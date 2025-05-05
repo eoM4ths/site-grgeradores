@@ -1,0 +1,870 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GR Geradores | Manutenção, Conserto e Aluguel de Geradores</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap');
+        
+        :root {
+            --primary-red: #e60000;
+            --primary-black: #121212;
+            --accent-blue: #0066cc;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--primary-black);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        .hero-bg {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(230,0,0,0.5) 100%);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .lightning {
+            position: absolute;
+            opacity: 0;
+            stroke: #fff;
+            stroke-width: 1;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            animation: flash 7s infinite;
+        }
+        
+        .lightning:nth-child(1) {
+            animation-delay: 0s;
+            top: 20%;
+            left: 10%;
+        }
+        
+        .lightning:nth-child(2) {
+            animation-delay: 2s;
+            top: 30%;
+            right: 15%;
+        }
+        
+        .lightning:nth-child(3) {
+            animation-delay: 4s;
+            bottom: 20%;
+            left: 20%;
+        }
+        
+        @keyframes flash {
+            0%, 100% {
+                opacity: 0;
+            }
+            0.5%, 1.5% {
+                opacity: 1;
+            }
+            2% {
+                opacity: 0;
+            }
+            2.5%, 3.5% {
+                opacity: 0.6;
+            }
+            4% {
+                opacity: 0;
+            }
+        }
+        
+        .gear {
+            position: absolute;
+            animation: rotate 20s linear infinite;
+            opacity: 0.15;
+            z-index: 0;
+        }
+        
+        .gear-1 {
+            position: absolute;
+            top: 10%;
+            right: 5%;
+            width: 150px;
+            height: 150px;
+            fill: #e60000;
+        }
+        
+        .gear-2 {
+            bottom: 5%;
+            left: 10%;
+            width: 100px;
+            height: 100px;
+            animation-direction: reverse;
+        }
+        
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary-red);
+        }
+        
+        .service-card {
+            background: rgba(18, 18, 18, 0.8);
+            border-left: 4px solid var(--primary-red);
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(230, 0, 0, 0.2);
+        }
+        
+        .service-icon {
+            color: var(--primary-red);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-red);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #cc0000;
+            transform: translateY(-2px);
+        }
+        
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-whatsapp:hover {
+            background-color: #20bd5a;
+            transform: translateY(-2px);
+        }
+        
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 100;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+        
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background: rgba(230, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* opacity: 0; */
+            transition: all 0.3s ease;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        
+        .form-input {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-color: var(--primary-red);
+            outline: none;
+        }
+        
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .navbar {
+            background-color: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-red);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu {
+            transition: all 0.3s ease;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        .cards:hover {
+            transition: all 0.3s ease;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(230, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar fixed w-full z-50 px-3 py-0"  id="navbar">
+        <div class="container mx-auto flex justify-between items-center">
+            <img src="logo-branco.png" width="7%">
+            <!-- <a href="#" class="text-2xl font-bold text-white flex items-center">
+                <span class="text-red-600">GR</span> Geradores
+            </a> -->
+            
+            <div class="hidden md:flex space-x-8">
+                <a href="#quem-somos" class="nav-link text-white hover:text-red-500">Quem Somos</a>
+                <a href="#servicos" class="nav-link text-white hover:text-red-500">Serviços</a>
+                <a href="#portfolio" class="nav-link text-white hover:text-red-500">Projetos</a>
+                <a href="#orcamento" class="nav-link text-white hover:text-red-500">Orçamento</a>
+            </div>
+            
+            <button class="md:hidden text-white text-2xl" id="mobile-menu-button">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu hidden w-full mt-2 md:hidden" id="mobile-menu">
+            <div class="flex flex-col space-y-4 p-4 bg-gray-900 rounded-lg">
+                <a href="#quem-somos" class="text-white hover:text-red-500">Quem Somos</a>
+                <a href="#servicos" class="text-white hover:text-red-500">Serviços</a>
+                <a href="#portfolio" class="text-white hover:text-red-500">Projetos</a>
+                <a href="#orcamento" class="text-white hover:text-red-500">Orçamento</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-16 hero-bg h-[60vh] flex items-center">
+        <!-- Animated Elements -->
+        <svg class="lightning" width="60" height="100" viewBox="0 0 60 100">
+            <polygon points="30,0 5,50 25,50 15,100 50,45 30,45"/>
+          </svg>          
+        
+        <!-- Gears -->
+        <svg class="gear gear-1" viewBox="0 0 24 24">
+            <path fill="#e60000" d="M24 13.616v-3.232c-1.651-.587-2.694-.752-3.219-2.019v-.001c-.527-1.271.1-2.134.847-3.707l-2.285-2.285c-1.561.742-2.433 1.375-3.707.847h-.001c-1.269-.526-1.435-1.576-2.019-3.219h-3.232c-.582 1.635-.749 2.692-2.019 3.219h-.001c-1.271.528-2.132-.098-3.707-.847l-2.285 2.285c.745 1.568 1.375 2.434.847 3.707-.527 1.271-1.584 1.438-3.219 2.02v3.232c1.632.58 2.692.749 3.219 2.019.53 1.282-.114 2.166-.847 3.707l2.285 2.286c1.562-.743 2.434-1.375 3.707-.847h.001c1.27.526 1.436 1.579 2.019 3.219h3.232c.582-1.636.75-2.69 2.027-3.222h.001c1.262-.524 2.12.101 3.698.851l2.285-2.286c-.744-1.563-1.375-2.433-.848-3.706.527-1.271 1.588-1.44 3.221-2.021zm-12 2.384c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4z"/>
+          </svg>
+
+        <div class="container mx-auto px-4 hero-content">
+            <div class="max-w-4xl">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                    <span class="text-red-600">Energia</span> que move seu negócio, 
+                    confiança que sustenta seus projetos.
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 text-gray-300">
+                    Soluções completas em geradores, motores elétricos e transformadores.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="https://wa.me/5511999999999" target="_blank" class="btn-whatsapp px-8 py-4 rounded-lg text-lg font-bold flex items-center justify-center">
+                        <i class="fab fa-whatsapp mr-2 text-2xl"></i>
+                        Solicite um orçamento agora
+                    </a>
+                    <a href="#servicos" class="btn-primary px-8 py-4 rounded-lg text-lg font-bold text-center">
+                        Conheça nossos serviços
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quem Somos Section -->
+    <section id="quem-somos" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2">
+                    <h2 class="section-title text-3xl md:text-4xl font-bold">Quem Somos</h2>
+                    <p class="text-lg mb-6 text-gray-300">
+                        A GR Geradores é uma empresa especializada em soluções energéticas, sediada em São Paulo, 
+                        com foco em oferecer serviços de alta qualidade para empresas de todos os portes.
+                    </p>
+                    <p class="text-lg mb-6 text-gray-300">
+                        Nossa equipe é formada por profissionais altamente qualificados, com vasta experiência 
+                        no setor de energia, prontos para atender às suas necessidades com agilidade e eficiência.
+                    </p>
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center">
+                            <i class="fas fa-bolt text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">Agilidade</h3>
+                            <p class="text-gray-400">Atendimento rápido e eficiente</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center">
+                            <i class="fas fa-shield-alt text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">Confiança</h3>
+                            <p class="text-gray-400">Serviços com garantia e segurança</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center">
+                            <i class="fas fa-tools text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">Expertise Técnica</h3>
+                            <p class="text-gray-400">Profissionais especializados</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 relative">
+                    <div class="w-full h-96 bg-gray-800 rounded-lg overflow-hidden relative">
+                        <svg class="absolute inset-0 w-full h-full" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <path fill="#e60000" d="M44.7,-76.4C58.8,-69.2,71.8,-59.1,79.6,-45.8C87.4,-32.6,90,-16.3,88.4,-1.1C86.7,14.2,80.8,28.3,72.7,41.2C64.7,54.1,54.4,65.7,41.8,74.4C29.1,83.2,14.6,89.1,-0.9,90.6C-16.3,92.1,-32.7,89.3,-46.9,81.5C-61.1,73.8,-73.1,61.1,-79.3,46.2C-85.4,31.3,-85.7,14.1,-83.9,-2.1C-82.1,-18.3,-78.3,-33.6,-69.9,-46.4C-61.5,-59.1,-48.6,-69.3,-34.7,-76.5C-20.8,-83.7,-5.9,-87.9,8.4,-85.1C22.7,-82.3,45.5,-72.5,44.7,-76.4Z" transform="translate(100 100)" />
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="fas fa-cogs text-white text-6xl mb-4"></i>
+                                <h3 class="text-2xl font-bold text-white">GR Geradores</h3>
+                                <p class="text-gray-300">Energia para o seu sucesso</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 w-48 h-48 bg-blue-600 rounded-lg -z-10"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Serviços Section -->
+    <section id="servicos" class="py-20 bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title text-3xl md:text-4xl font-bold text-center mb-16">Nossos Serviços</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Serviço 1 -->
+                <div class="service-card p-8 rounded-lg">
+                    <div class="service-icon">
+                        <i class="fas fa-plug"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Manutenção Preventiva ou Corretiva</h3>
+                    <p class="text-gray-400 mb-6">
+                        Evite surpresas e garanta o funcionamento ideal do seu gerador com manutenções preventivas periódicas ou corretivas sempre que necessário. Nossa equipe especializada identifica e resolve falhas com rapidez e eficiência.
+                    </p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-600 mr-2"></i>
+                            <span>Manutenção Preventiva</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-600 mr-2"></i>
+                            <span>Atendimento Emergencial</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-600 mr-2"></i>
+                            <span>Laudos Técnicos</span>
+                        </li>
+                    </ul>
+                    <a href="#orcamento" class="btn-primary inline-block px-6 py-3 rounded-lg font-bold">
+                        Solicitar orçamento
+                    </a>
+                </div>
+                
+                <!-- Serviço 2 -->
+                <div class="service-card p-8 rounded-lg">
+                    <div class="service-icon">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Vendas e Instalação de Geradores</h3>
+                    <p class="text-gray-400 mb-6">
+                        Oferecemos geradores de alta performance para diversos tipos de demanda. Cuidamos de todo o processo: da escolha do equipamento ideal até a instalação completa, com segurança e qualidade garantidas.
+                    </p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-600 mr-2"></i>
+                            <span>Geradores novos e seminovos</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-600 mr-2"></i>
+                            <span>Instalação Especializada</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-600 mr-2"></i>
+                            <span>Componentes originais</span>
+                        </li>
+                    </ul>
+                    <a href="#orcamento" class="btn-primary inline-block px-6 py-3 rounded-lg font-bold">
+                        Solicitar orçamento
+                    </a>
+                </div>
+                
+                <!-- Serviço 3 -->
+                <div class="service-card p-8 rounded-lg">
+                    <div class="service-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Locação e Assistência 24h</h3>
+                    <p class="text-gray-400 mb-6">
+                        Precisa de energia com agilidade? Alugue geradores com suporte técnico completo e atendimento emergencial 24 horas. Pronto para eventos, obras ou emergências.
+                        Entre em contato conosco!
+
+
+                    </p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-600 mr-2"></i>
+                            <span>Atendimento emergencial</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-600 mr-2"></i>
+                            <span>Locação sob demanda</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-600 mr-2"></i>
+                            <span>Suporte 24h</span>
+                        </li>
+                    </ul>
+                    <a href="#orcamento" class="btn-primary inline-block px-6 py-3 rounded-lg font-bold">
+                        Solicitar orçamento
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+  
+        <!-- Container do Carrossel -->
+        <section id="portfolio" class="py-20 bg-gray-900">
+            <div class="container mx-auto px-4">
+                <h2 class="section-title text-3xl md:text-4xl font-bold text-center mb-16">Nossos Projetos</h2>
+              <div class="relative">
+                <!-- Botões -->
+                <button id="prevBtn" class="absolute left-0 top-1/2 transform -translate-y-1/2 z-10">
+                    <div class="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center shadow-lg hover:bg-red-500 transition">
+                      <i class="fas fa-chevron-left text-white text-xl"></i>
+                    </div>
+                  </button>
+            
+                  <button id="nextBtn" class="absolute right-0 top-1/2 transform -translate-y-1/2 z-10">
+                    <div class="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center shadow-lg hover:bg-red-500 transition">
+                      <i class="fas fa-chevron-right text-white text-xl"></i>
+                    </div>
+                  </button>
+                <!-- Carrossel -->
+                <div id="carousel" class="flex overflow-x-auto scroll-smooth space-x-6 snap-x snap-mandatory px-6 scrollbar-hide">
+                  <!-- Cards -->
+                  <div class="cards flex-shrink-0 w-[80%] sm:w-[400px] md:w-[500px] h-[360px] bg-gray-800 rounded-lg relative overflow-hidden snap-start">
+                    <img src="instalacao.jpg" alt="Instalação Industrial" class="w-full h-full object-cover absolute inset-0" />
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-end p-4 text-white">
+                      <h3 class="text-lg font-bold">Instalação Industrial</h3>
+                      <p class="text-sm">Gerador de 250kVA para indústria metalúrgica</p>
+                    </div>
+                  </div>
+          
+                  <div class="cards flex-shrink-0 w-[80%] sm:w-[400px] md:w-[500px] h-[360px] bg-gray-800 rounded-lg relative overflow-hidden snap-start">
+                    <img src="preventiva.jpg" alt="Manutenção Preventiva" class="w-full h-full object-cover absolute inset-0" />
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-end p-4 text-white">
+                      <h3 class="text-lg font-bold">Manutenção Preventiva</h3>
+                      <p class="text-sm">Gerador de 250kVA para indústria metalúrgica</p>
+                    </div>
+                  </div>
+          
+                  <div class="cards flex-shrink-0 w-[80%] sm:w-[400px] md:w-[500px] h-[360px] bg-gray-800 rounded-lg relative overflow-hidden snap-start">
+                    <img src="locacao.jpg" alt="Locação de Equipamento" class="w-full h-full object-cover absolute inset-0" />
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-end p-4 text-white">
+                      <h3 class="text-lg font-bold">Locação de Equipamento</h3>
+                      <p class="text-sm">Gerador de 250kVA para indústria metalúrgica</p>
+                    </div>
+                  </div>
+          
+                  <div class="cards flex-shrink-0 w-[80%] sm:w-[400px] md:w-[500px] h-[360px] bg-gray-800 rounded-lg relative overflow-hidden snap-start">
+                    <img src="projetos.jpg" alt="Projetos Elétricos" class="w-full h-full object-cover absolute inset-0" />
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-end p-4 text-white">
+                      <h3 class="text-lg font-bold">Projetos Elétricos</h3>
+                      <p class="text-sm">Projetos personalizados conforme demanda</p>
+                    </div>
+                  </div>
+          
+                  <!-- Você pode adicionar mais cards aqui -->
+                </div>
+              </div>
+            </div>
+          </section>
+          
+            
+            <!-- Testimonials
+            <div class="mt-20 py-20">
+                <h2 class="section-title text-3xl md:text-4xl font-bold text-center mb-16">O que nossos clientes dizem
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                    Testimonial 1
+                    <div class="testimonial-card p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center mr-4">
+                                <span class="text-white font-bold">JC</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">João Carlos</h4>
+                                <p class="text-sm text-gray-400">Indústria Metalúrgica</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300">
+                            "A equipe da GR Geradores foi extremamente profissional e ágil. Resolveram nosso problema 
+                            com o gerador em tempo recorde, evitando maiores prejuízos na produção."
+                        </p>
+                        <div class="mt-4 flex">
+                            <i class="fas fa-star text-yellow-500"></i>
+                            <i class="fas fa-star text-yellow-500"></i>
+                            <i class="fas fa-star text-yellow-500"></i>
+                            <i class="fas fa-star text-yellow-500"></i>
+                            <i class="fas fa-star text-yellow-500"></i>
+                        </div>
+                    </div>
+                    
+                    Testimonial 2
+                    <div class="testimonial-card p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center mr-4">
+                                <span class="text-white font-bold">MS</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Maria Silva</h4>
+                                <p class="text-sm text-gray-400">Hospital Particular</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300">
+                            "Contratamos a GR para manutenção preventiva dos nossos geradores de emergência. 
+                            O serviço é impecável e nos dá tranquilidade para operar com segurança."
+                        </p>
+                        <div class="mt-4 flex">
+                            <i class="fas fa-star text-yellow-500"></i>
+                            <i class="fas fa-star text-yellow-500"></i>
+                            <i class="fas fa-star text-yellow-500"></i>
+                            <i class="fas fa-star text-yellow-500"></i>
+                            <i class="fas fa-star text-yellow-500"></i>
+                        </div>
+                    </div>
+                    
+                    Testimonial 3
+                    <div class="testimonial-card p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center mr-4">
+                                <span class="text-white font-bold">RL</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Roberto Lima</h4>
+                                <p class="text-sm text-gray-400">Produtor de Eventos</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300">
+                            "Já utilizei os serviços da GR em diversos eventos. Os geradores são sempre entregues 
+                            no prazo e funcionam perfeitamente. Recomendo sem hesitar!"
+                        </p>
+                        <div class="mt-4 flex">
+                            <i class="fas fa-star text-yellow-500"></i>
+                            <i class="fas fa-star text-yellow-500"></i>
+                            <i class="fas fa-star text-yellow-500"></i>
+                            <i class="fas fa-star text-yellow-500"></i>
+                            <i class="fas fa-star-half-alt text-yellow-500"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Orçamento Section -->
+    <section id="orcamento" class="py-20 bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title text-3xl md:text-4xl font-bold text-center mb-16">Solicite um Orçamento</h2>
+            
+            <div class="max-w-2xl mx-auto bg-gray-900 p-8 rounded-lg shadow-lg">
+                <form id="orcamento-form" class="space-y-6">
+                    <div>
+                        <label for="nome" class="block mb-2 font-bold">Nome</label>
+                        <input type="text" id="nome" class="form-input w-full px-4 py-3 rounded-lg" placeholder="Seu nome" required>
+                    </div>
+                    
+                    <div>
+                        <label for="telefone" class="block mb-2 font-bold">Telefone</label>
+                        <input type="tel" id="telefone" class="form-input w-full px-4 py-3 rounded-lg" placeholder="(11) 99999-9999" required>
+                    </div>
+                    
+                    <div>
+                        <label for="servico" class="block mb-2 font-bold">Tipo de Serviço</label>
+                        <select id="servico" class="form-input w-full px-4 py-3 rounded-lg" required>
+                            <option value="" style="color: rgba(255, 255, 255, 0.2);">Selecione um serviço</option>
+                            <option value="locacao" style="color: black;">Locação de Geradores</option>
+                            <option value="manutencao" style="color: black;">Manutenção de Motores Elétricos</option>
+                            <option value="transformadores" style="color: black;">Transformadores</option>
+                            <option value="outro" style="color: black;">Outro</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="mensagem" class="block mb-2 font-bold">Mensagem</label>
+                        <textarea id="mensagem" rows="4" class="form-input w-full px-4 py-3 rounded-lg" placeholder="Descreva sua necessidade em detalhes"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn-whatsapp w-full py-4 rounded-lg text-lg font-bold flex items-center justify-center">
+                        <i class="fab fa-whatsapp mr-2 text-2xl"></i>
+                        Enviar via WhatsApp
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-8 md:mb-0">
+                    <a href="#" class="text-2xl font-bold text-white flex items-center">
+                        <span class="text-red-600">GR</span> Geradores
+                    </a>
+                    <p class="text-gray-400 mt-2">Energia que move seu negócio</p>
+                </div>
+                
+                <div class="flex flex-col md:flex-row gap-8 md:gap-16">
+                    <div>
+                        <h4 class="text-lg font-bold mb-4">Contato</h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-center">
+                                <i class="fas fa-phone text-red-600 mr-2"></i>
+                                <a href="tel:+551199999999" class="text-gray-400 hover:text-white">(11) 99999-9999</a>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-envelope text-red-600 mr-2"></i>
+                                <a href="mailto:contato@grgeradores.com.br" class="text-gray-400 hover:text-white">contato@grgeradores.com.br</a>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-map-marker-alt text-red-600 mr-2"></i>
+                                <span class="text-gray-400">São Paulo - SP</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-bold mb-4">Redes Sociais</h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-center">
+                                <i class="fab fa-instagram text-red-600 mr-2"></i>
+                                <a href="https://instagram.com/grgeradores" target="_blank" class="text-gray-400 hover:text-white">@grgeradores</a>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fab fa-facebook text-red-600 mr-2"></i>
+                                <a href="https://www.facebook.com/people/GR-Geradores/61552719789469/#" target="_blank" class="text-gray-400 hover:text-white">GR Geradores</a>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fab fa-linkedin text-red-600 mr-2"></i>
+                                <a href="https://linkedin.com/company/grgeradores" target="_blank" class="text-gray-400 hover:text-white">GR Geradores</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                <p class="text-gray-500">&copy; 2025 GR Geradores. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/5511999999999" target="_blank" class="floating-whatsapp w-16 h-16 rounded-full bg-green-500 flex items-center justify-center shadow-lg">
+        <i class="fab fa-whatsapp text-white text-3xl"></i>
+    </a>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Smooth Scrolling for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+        
+        // WhatsApp Form Submission
+        const orcamentoForm = document.getElementById('orcamento-form');
+        
+        orcamentoForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const nome = document.getElementById('nome').value;
+            const telefone = document.getElementById('telefone').value;
+            const servico = document.getElementById('servico').value;
+            const mensagem = document.getElementById('mensagem').value;
+            
+            const servicoText = servico === 'locacao' ? 'Locação de Geradores' :
+                               servico === 'manutencao' ? 'Manutenção de Motores Elétricos' :
+                               servico === 'transformadores' ? 'Transformadores' : 'Outro';
+            
+            const whatsappMessage = `Olá, sou ${nome}. Gostaria de solicitar um orçamento para ${servicoText}. ${mensagem}`;
+            const whatsappUrl = `https://wa.me/5511999999999?text=${encodeURIComponent(whatsappMessage)}`;
+            
+            window.open(whatsappUrl, '_blank');
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'939bc404f2dff502',t:'MTc0NjIzMzQ0Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+<script>
+    const navbar = document.getElementById("navbar");
+  
+    window.addEventListener("scroll", () => {
+      const scrollY = window.scrollY;
+      const threshold = window.innerHeight * 0.25; // 25% da altura da tela
+  
+      if (scrollY > threshold) {
+        navbar.classList.add("translate-y-[-100%]");
+      } else {
+        navbar.classList.remove("translate-y-[-100%]");
+      }
+    });
+  </script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const carousel = document.getElementById("carousel");
+      const prevBtn = document.getElementById("prevBtn");
+      const nextBtn = document.getElementById("nextBtn");
+  
+      const scrollStep = 400; // ajustável
+  
+      prevBtn.addEventListener("click", () => {
+        carousel.scrollBy({ left: -scrollStep, behavior: "smooth" });
+      });
+  
+      nextBtn.addEventListener("click", () => {
+        carousel.scrollBy({ left: scrollStep, behavior: "smooth" });
+      });
+    });
+  </script>
+  
+  </body>
+</html>
