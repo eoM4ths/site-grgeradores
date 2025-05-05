@@ -309,6 +309,38 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(230, 0, 0, 0.2);
         }
+        .no-hover:hover {
+            transform: none;
+            box-shadow: none
+        }
+        .area-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--accent-blue);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            transform: rotate(5deg);
+        }
+        .statBG{
+            color: white;
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(230,0,0,0.5) 100%);
+            z-index: 1;
+        }
+        .stat-bg {
+            position: relative;
+            overflow: hidden;
+        }
+        
     </style>
 </head>
 <body>
@@ -588,88 +620,516 @@
               </div>
             </div>
           </section>
-          
-            
-            <!-- Testimonials
-            <div class="mt-20 py-20">
-                <h2 class="section-title text-3xl md:text-4xl font-bold text-center mb-16">O que nossos clientes dizem
-                </h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-                    Testimonial 1
-                    <div class="testimonial-card p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center mr-4">
-                                <span class="text-white font-bold">JC</span>
-                            </div>
-                            <div>
-                                <h4 class="font-bold">João Carlos</h4>
-                                <p class="text-sm text-gray-400">Indústria Metalúrgica</p>
-                            </div>
+          <!-- Areas de atuação -->
+          <section class="services py-16 bg-gray-800">
+            <div class="container mx-auto px-4">
+                <h2 class="section-title text-3xl md:text-4xl font-bold text-center mb-16">Áreas de Atuação</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Primeiros 3 cards visíveis -->
+
+                    <div class="service-card area-card rounded-lg p-6 relative">
+                        <div class="area-overlay"></div>
+                        <div class="area-icon">
+                            <i class="fas fa-plug"></i>
                         </div>
-                        <p class="text-gray-300">
-                            "A equipe da GR Geradores foi extremamente profissional e ágil. Resolveram nosso problema 
-                            com o gerador em tempo recorde, evitando maiores prejuízos na produção."
+                        <h3 class="text-2xl font-bold mb-3">Indústria</h3>
+                        <p class="text-gray-300 mb-4">
+                            Soluções em geradores para indústrias, garantindo a continuidade das 
+                            operações em qualquer situação.
                         </p>
-                        <div class="mt-4 flex">
-                            <i class="fas fa-star text-yellow-500"></i>
-                            <i class="fas fa-star text-yellow-500"></i>
-                            <i class="fas fa-star text-yellow-500"></i>
-                            <i class="fas fa-star text-yellow-500"></i>
-                            <i class="fas fa-star text-yellow-500"></i>
+                        <ul class="space-y-2 mb-4">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-red-600 mr-2"></i>
+                                <span>Geradores silenciosos e potentes</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-red-600 mr-2"></i>
+                                <span>Transferência automática</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-red-600 mr-2"></i>
+                                <span>Instalação rápida</span>
+                            </li>
+                        </ul>
+                        <div class="flex items-center text-sm text-gray-400">
+                            <i class="fas fa-bolt mr-1 text-yellow-500"></i>
+                            <span>Potências de 5kVA a 30kVA</span>
                         </div>
                     </div>
                     
-                    Testimonial 2
-                    <div class="testimonial-card p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center mr-4">
-                                <span class="text-white font-bold">MS</span>
-                            </div>
-                            <div>
-                                <h4 class="font-bold">Maria Silva</h4>
-                                <p class="text-sm text-gray-400">Hospital Particular</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-300">
-                            "Contratamos a GR para manutenção preventiva dos nossos geradores de emergência. 
-                            O serviço é impecável e nos dá tranquilidade para operar com segurança."
-                        </p>
-                        <div class="mt-4 flex">
-                            <i class="fas fa-star text-yellow-500"></i>
-                            <i class="fas fa-star text-yellow-500"></i>
-                            <i class="fas fa-star text-yellow-500"></i>
-                            <i class="fas fa-star text-yellow-500"></i>
-                            <i class="fas fa-star text-yellow-500"></i>
-                        </div>
+ <div class="service-card area-card rounded-lg p-6 relative">
+                    <div class="area-overlay"></div>
+                    <span class="area-badge">Alta Demanda</span>
+                    <div class="area-icon">
+                        <i class="fas fa-industry"></i>
                     </div>
-                    
-                    Testimonial 3
-                    <div class="testimonial-card p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center mr-4">
-                                <span class="text-white font-bold">RL</span>
-                            </div>
-                            <div>
-                                <h4 class="font-bold">Roberto Lima</h4>
-                                <p class="text-sm text-gray-400">Produtor de Eventos</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-300">
-                            "Já utilizei os serviços da GR em diversos eventos. Os geradores são sempre entregues 
-                            no prazo e funcionam perfeitamente. Recomendo sem hesitar!"
-                        </p>
-                        <div class="mt-4 flex">
-                            <i class="fas fa-star text-yellow-500"></i>
-                            <i class="fas fa-star text-yellow-500"></i>
-                            <i class="fas fa-star text-yellow-500"></i>
-                            <i class="fas fa-star text-yellow-500"></i>
-                            <i class="fas fa-star-half-alt text-yellow-500"></i>
-                        </div>
+                    <h3 class="text-2xl font-bold mb-3">Indústrias</h3>
+                    <p class="text-gray-300 mb-4">
+                        Soluções para manter a produção industrial em funcionamento contínuo, 
+                        evitando perdas por interrupções de energia.
+                    </p>
+                    <ul class="space-y-2 mb-4">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-600 mr-2"></i>
+                            <span>Geradores de alta potência</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-600 mr-2"></i>
+                            <span>Sistemas de transferência automática</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-600 mr-2"></i>
+                            <span>Manutenção preventiva programada</span>
+                        </li>
+                    </ul>
+                    <div class="flex items-center text-sm text-gray-400">
+                        <i class="fas fa-bolt mr-1 text-yellow-500"></i>
+                        <span>Potências de 100kVA a 500kVA</span>
+                    </div>
+                </div>
+                
+                <!-- Hospitais e Clínicas -->
+                <div class="service-card area-card rounded-lg p-6 relative pulse-animation">
+                    <div class="area-overlay"></div>
+                    <span class="area-badge">Crítico</span>
+                    <div class="area-icon">
+                        <i class="fas fa-hospital"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Hospitais e Clínicas</h3>
+                    <p class="text-gray-300 mb-4">
+                        Energia ininterrupta para ambientes hospitalares onde falhas 
+                        podem comprometer vidas e equipamentos essenciais.
+                    </p>
+                    <ul class="space-y-2 mb-4">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-600 mr-2"></i>
+                            <span>Sistemas redundantes</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-600 mr-2"></i>
+                            <span>Acionamento em milissegundos</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-600 mr-2"></i>
+                            <span>Monitoramento 24h</span>
+                        </li>
+                    </ul>
+                    <div class="flex items-center text-sm text-gray-400">
+                        <i class="fas fa-bolt mr-1 text-yellow-500"></i>
+                        <span>Atendimento prioritário 24/7</span>
+                    </div>
+                </div>
+                
+                <!-- Condomínios -->
+                <div class="service-card area-card rounded-lg p-6 relative">
+                    <div class="area-overlay"></div>
+                    <div class="area-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Condomínios</h3>
+                    <p class="text-gray-300 mb-4">
+                        Geradores para áreas comuns, elevadores e sistemas de segurança, 
+                        garantindo conforto e proteção aos moradores.
+                    </p>
+                    <ul class="space-y-2 mb-4">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-600 mr-2"></i>
+                            <span>Baixo nível de ruído</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-600 mr-2"></i>
+                            <span>Instalação em áreas técnicas</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-600 mr-2"></i>
+                            <span>Manutenção programada</span>
+                        </li>
+                    </ul>
+                    <div class="flex items-center text-sm text-gray-400">
+                        <i class="fas fa-bolt mr-1 text-yellow-500"></i>
+                        <span>Potências de 40kVA a 150kVA</span>
+                    </div>
+                </div>
+                
+                <!-- Comércio e Varejo -->
+                <div class="service-card area-card rounded-lg p-6 relative">
+                    <div class="area-overlay"></div>
+                    <div class="area-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Comércio e Varejo</h3>
+                    <p class="text-gray-300 mb-4">
+                        Soluções para supermercados, lojas e centros comerciais, evitando 
+                        perdas de mercadorias e interrupção nas vendas.
+                    </p>
+                    <ul class="space-y-2 mb-4">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-600 mr-2"></i>
+                            <span>Sistemas para refrigeração</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-600 mr-2"></i>
+                            <span>Proteção para PDVs e servidores</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-600 mr-2"></i>
+                            <span>Iluminação de emergência</span>
+                        </li>
+                    </ul>
+                    <div class="flex items-center text-sm text-gray-400">
+                        <i class="fas fa-bolt mr-1 text-yellow-500"></i>
+                        <span>Potências de 30kVA a 200kVA</span>
+                    </div>
+                </div>
+                
+                <!-- Eventos -->
+                <div class="service-card area-card rounded-lg p-6 relative">
+                    <div class="area-overlay"></div>
+                    <span class="area-badge">Temporário</span>
+                    <div class="area-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Eventos</h3>
+                    <p class="text-gray-300 mb-4">
+                        Geradores para shows, feiras, congressos e eventos corporativos, 
+                        com instalação rápida e suporte técnico no local.
+                    </p>
+                    <ul class="space-y-2 mb-4">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-600 mr-2"></i>
+                            <span>Geradores silenciados</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-600 mr-2"></i>
+                            <span>Transporte e instalação</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-600 mr-2"></i>
+                            <span>Técnico de plantão</span>
+                        </li>
+                    </ul>
+                    <div class="flex items-center text-sm text-gray-400">
+                        <i class="fas fa-bolt mr-1 text-yellow-500"></i>
+                        <span>Locação por hora ou diária</span>
+                    </div>
+                </div>
+                
+                <!-- Residências -->
+                <div class="service-card area-card rounded-lg p-6 relative hidden">
+                    <div class="area-overlay"></div>
+                    <div class="area-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Residências</h3>
+                    <p class="text-gray-300 mb-4">
+                        Soluções para casas e apartamentos, garantindo conforto e segurança 
+                        para sua família durante interrupções de energia.
+                    </p>
+                    <ul class="space-y-2 mb-4">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-600 mr-2"></i>
+                            <span>Geradores compactos e silenciosos</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-600 mr-2"></i>
+                            <span>Instalação discreta</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-600 mr-2"></i>
+                            <span>Acionamento automático</span>
+                        </li>
+                    </ul>
+                    <div class="flex items-center text-sm text-gray-400">
+                        <i class="fas fa-bolt mr-1 text-yellow-500"></i>
+                        <span>Potências de 10kVA a 50kVA</span>
+                    </div>
+                </div>
+                    <!-- Cards ocultos inicialmente -->
+                    <!-- Data Centers -->
+                <div class="service-card area-card rounded-lg p-6 relative hidden">
+                    <div class="area-overlay"></div>
+                    <span class="area-badge">Missão Crítica</span>
+                    <div class="area-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Data Centers</h3>
+                    <p class="text-gray-300 mb-4">
+                        Sistemas redundantes para ambientes de TI, garantindo disponibilidade 
+                        contínua e proteção para equipamentos sensíveis.
+                    </p>
+                    <ul class="space-y-2 mb-4">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-600 mr-2"></i>
+                            <span>Sistemas N+1 e 2N</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-600 mr-2"></i>
+                            <span>Integração com nobreaks</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-600 mr-2"></i>
+                            <span>Monitoramento remoto</span>
+                        </li>
+                    </ul>
+                    <div class="flex items-center text-sm text-gray-400">
+                        <i class="fas fa-bolt mr-1 text-yellow-500"></i>
+                        <span>Soluções customizadas</span>
+                    </div>
+                </div>
+                
+                <!-- Agronegócio -->
+                <div class="service-card area-card rounded-lg p-6 relative hidden">
+                    <div class="area-overlay"></div>
+                    <div class="area-icon">
+                        <i class="fas fa-tractor"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Agronegócio</h3>
+                    <p class="text-gray-300 mb-4">
+                        Energia para fazendas, sistemas de irrigação, armazenamento e 
+                        processamento de produtos agrícolas.
+                    </p>
+                    <ul class="space-y-2 mb-4">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-600 mr-2"></i>
+                            <span>Geradores robustos</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-600 mr-2"></i>
+                            <span>Adaptados para áreas rurais</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-600 mr-2"></i>
+                            <span>Suporte técnico especializado</span>
+                        </li>
+                    </ul>
+                    <div class="flex items-center text-sm text-gray-400">
+                        <i class="fas fa-bolt mr-1 text-yellow-500"></i>
+                        <span>Potências de 50kVA a 300kVA</span>
+                    </div>
+                </div>
+                
+                <!-- Telecomunicações -->
+                <div class="service-card area-card rounded-lg p-6 relative hidden">
+                    <div class="area-overlay"></div>
+                    <div class="area-icon">
+                        <i class="fas fa-broadcast-tower"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Telecomunicações</h3>
+                    <p class="text-gray-300 mb-4">
+                        Soluções para torres, estações de transmissão e centrais telefônicas, 
+                        mantendo a comunicação sempre disponível.
+                    </p>
+                    <ul class="space-y-2 mb-4">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-600 mr-2"></i>
+                            <span>Geradores para sites remotos</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-600 mr-2"></i>
+                            <span>Sistemas de monitoramento</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-600 mr-2"></i>
+                            <span>Manutenção preventiva</span>
+                        </li>
+                    </ul>
+                    <div class="flex items-center text-sm text-gray-400">
+                        <i class="fas fa-bolt mr-1 text-yellow-500"></i>
+                        <span>Soluções para áreas isoladas</span>
                     </div>
                 </div>
             </div>
+                </div>
+        
+                <div class="text-center mt-16">
+                    <button id="mostrar-mais" class="bg-red-600 hover:bg-red-700 text-white py-2 px-6 rounded-lg">
+                        Ver Mais
+                    </button>
+                </div>
+            </div>
+        </section>
+            
+            <!-- Estatísticas -->
+            <div class="stat-bg statBG grid grid-cols-1 md:grid-cols-4 gap-8 rounded-lg bg-gray-800 p-6 px-4">
+                <div class="text-center">
+                    <div class="pt-4 text-4xl font-bold text-red-600 mb-2">+500</div>
+                    <p class="text-gray-300 pb-4">Clientes atendidos</p>
+                </div>
+                <div class="text-center">
+                    <div class="pt-4 text-4xl font-bold text-red-600 mb-2">15</div>
+                    <p class="text-gray-300 pb-4">Anos de experiência</p>
+                </div>
+                <div class="text-center">
+                    <div class="pt-4 text-4xl font-bold text-red-600 mb-2">24/7</div>
+                    <p class="text-gray-300 pb-4">Suporte técnico</p>
+                </div>
+                <div class="text-center">
+                    <div class="pt-4 text-4xl font-bold text-red-600 mb-2">100%</div>
+                    <p class="text-gray-300 pb-4">Satisfação garantida</p>
+                </div>
+            </div>
+            
+            <!-- CTA -->
+            <!-- <div class="text-center bg-gray-900">
+                <h3 class="pt-4 text-2xl font-bold mb-6">Precisa de uma solução para seu segmento?</h3>
+                <a href="#orcamento" class="inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:-translate-y-1">
+                    Solicite um orçamento personalizado
+                </a>
+            </div> -->
         </div>
-    </section> -->
+    </section>
+            <!-- Depoimentos -->
+          <section id="testimonials" class="py-20 bg-gray-900">
+            <div class="container mx-auto px-4">
+              <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center text-white">Depoimentos</h2>
+          
+              <div id="testimonial-wrapper" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          
+                <!-- Card 1 -->
+                <div class="testimonial-card p-6 bg-gray-800 rounded-lg visible">
+                  <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 rounded-full bg-rose-600 flex items-center justify-center mr-4">
+                      <span class="text-white font-bold">JP</span>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-white">João Pereira</h4>
+                      <p class="text-sm text-gray-400">Engenheiro</p>
+                    </div>
+                  </div>
+                  <p class="text-gray-300">"Excelente atendimento e entrega rápida. Recomendo a GR Geradores para qualquer empresa!"</p>
+                  <div class="mt-4 flex text-yellow-500">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                  </div>
+                </div>
+          
+                <!-- Card 2 -->
+                <div class="testimonial-card p-6 bg-gray-800 rounded-lg visible">
+                  <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 rounded-full bg-yellow-600 flex items-center justify-center mr-4">
+                      <span class="text-white font-bold">MS</span>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-white">Maria Souza</h4>
+                      <p class="text-sm text-gray-400">Administradora</p>
+                    </div>
+                  </div>
+                  <p class="text-gray-300">"Precisávamos de um gerador com urgência e a GR atendeu com precisão e agilidade!"</p>
+                  <div class="mt-4 flex text-yellow-500">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                  </div>
+                </div>
+          
+                <!-- Card 3 -->
+                <div class="testimonial-card p-6 bg-gray-800 rounded-lg visible">
+                  <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 rounded-full bg-green-600 flex items-center justify-center mr-4">
+                      <span class="text-white font-bold">RL</span>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-white">Ricardo Lima</h4>
+                      <p class="text-sm text-gray-400">Gerente de Obras</p>
+                    </div>
+                  </div>
+                  <p class="text-gray-300">"Ótima consultoria técnica, equipe muito preparada. Tiveram o melhor custo-benefício!"</p>
+                  <div class="mt-4 flex text-yellow-500">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                  </div>
+                </div>
+          
+                <!-- Card 4 -->
+                <div class="testimonial-card p-6 bg-gray-800 rounded-lg visible">
+                  <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center mr-4">
+                      <span class="text-white font-bold">FC</span>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-white">Fabiana Costa</h4>
+                      <p class="text-sm text-gray-400">Diretora Industrial</p>
+                    </div>
+                  </div>
+                  <p class="text-gray-300">"Serviço de qualidade e suporte pós-venda impecável. Estamos muito satisfeitos."</p>
+                  <div class="mt-4 flex text-yellow-500">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                  </div>
+                </div>
+          
+                <!-- Card 5 -->
+                <div class="testimonial-card p-6 bg-gray-800 rounded-lg hidden">
+                  <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center mr-4">
+                      <span class="text-white font-bold">PM</span>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-white">Paulo Mendes</h4>
+                      <p class="text-sm text-gray-400">Supervisor Técnico</p>
+                    </div>
+                  </div>
+                  <p class="text-gray-300">"Empresa séria, com compromisso e equipamentos confiáveis. Voltaremos a contratar."</p>
+                  <div class="mt-4 flex text-yellow-500">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                  </div>
+                </div>
+          
+                <!-- Card 6 -->
+                <div class="testimonial-card p-6 bg-gray-800 rounded-lg hidden">
+                  <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 rounded-full bg-green-600 flex items-center justify-center mr-4">
+                      <span class="text-white font-bold">BM</span>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-white">Bruna Martins</h4>
+                      <p class="text-sm text-gray-400">Eventos Corporativos</p>
+                    </div>
+                  </div>
+                  <p class="text-gray-300">"Ficamos impressionados com a pontualidade e qualidade do gerador locado."</p>
+                  <div class="mt-4 flex text-yellow-500">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                  </div>
+                </div>
+          
+                <!-- Card 7 -->
+                <div class="testimonial-card p-6 bg-gray-800 rounded-lg hidden">
+                  <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center mr-4">
+                      <span class="text-white font-bold">LA</span>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-white">Leandro Alves</h4>
+                      <p class="text-sm text-gray-400">Empresário</p>
+                    </div>
+                  </div>
+                  <p class="text-gray-300">"Todo o processo de contratação foi transparente e eficiente. Parabéns à equipe."</p>
+                  <div class="mt-4 flex text-yellow-500">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                  </div>
+                </div>
+          
+                <!-- Card 8 -->
+                <div class="testimonial-card p-6 bg-gray-800 rounded-lg hidden">
+                  <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 rounded-full bg-yellow-600 flex items-center justify-center mr-4">
+                      <span class="text-white font-bold">CD</span>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-white">Carolina Dias</h4>
+                      <p class="text-sm text-gray-400">Engenheira Civil</p>
+                    </div>
+                  </div>
+                  <p class="text-gray-300">"Equipamentos novos, ótimo desempenho e instalação rápida. Superou as expectativas."</p>
+                  <div class="mt-4 flex text-yellow-500">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                  </div>
+                </div>
+              </div>
+          
+              <div class="flex justify-center mt-8">
+                <button id="toggle-testimonials" class="bg-red-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition duration-300">
+                  Ver mais depoimentos
+                </button>
+              </div>
+            </div>
+          </section>
 
     <!-- Orçamento Section -->
     <section id="orcamento" class="py-20 bg-gray-800">
@@ -869,6 +1329,35 @@
       });
     });
   </script>
+<script>
+    const toggleButton = document.getElementById('toggle-testimonials');
+    const testimonials = document.querySelectorAll('.testimonial-card');
+    let expanded = false;
+  
+    toggleButton.addEventListener('click', () => {
+      expanded = !expanded;
+  
+      testimonials.forEach((card, index) => {
+        if (index >= 4) {
+          card.classList.toggle('hidden');
+          card.classList.toggle('visible');
+        }
+      });
+  
+      toggleButton.textContent = expanded ? 'Ver menos depoimentos' : 'Ver mais depoimentos';
+    });
+  </script>
+<script>
+    document.getElementById("mostrar-mais").addEventListener("click", function() {
+        // Seleciona todos os cards ocultos e os torna visíveis
+        const hiddenCards = document.querySelectorAll(".service-card.hidden");
+        hiddenCards.forEach(function(card) {
+            card.classList.remove("hidden");
+        });
+        // Esconde o botão depois que os cards forem exibidos
+        this.style.display = "none";
+    });
+</script>
   
   </body>
 </html>
