@@ -926,11 +926,11 @@
             <!-- Estatísticas -->
             <div id="stats" class="stat-bg statBG grid grid-cols-1 md:grid-cols-4 gap-8 rounded-lg bg-gray-800 p-6 px-4">
                 <div class="text-center">
-                    <div class="pt-4 text-4xl font-bold text-red-600 mb-2">+500</div>
+                    <div class="pt-4 text-4xl font-bold text-red-600 mb-2 count-up" data-target="500">0</div>
                     <p class="text-gray-300 pb-4">Clientes atendidos</p>
                 </div>
                 <div class="text-center">
-                    <div class="pt-4 text-4xl font-bold text-red-600 mb-2">15</div>
+                    <div class="pt-4 text-4xl font-bold text-red-600 mb-2 count-up" data-target="15">0</div>
                     <p class="text-gray-300 pb-4">Anos de experiência</p>
                 </div>
                 <div class="text-center">
@@ -938,7 +938,7 @@
                     <p class="text-gray-300 pb-4">Suporte técnico</p>
                 </div>
                 <div class="text-center">
-                    <div class="pt-4 text-4xl font-bold text-red-600 mb-2">100%</div>
+                    <div class="pt-4 text-4xl font-bold text-red-600 mb-2 count-up" data-target="100">0%</div>
                     <p class="text-gray-300 pb-4">Satisfação garantida</p>
                 </div>
             </div>
@@ -1331,6 +1331,41 @@
         this.style.display = "none";
     });
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const counters = document.querySelectorAll(".count-up");
+  const speed = 40; // menor = mais rápido
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        const counter = entry.target;
+        const target = +counter.getAttribute("data-target");
+        const isPercentage = counter.textContent.includes("%");
+
+        let count = 0;
+
+        const updateCount = () => {
+          const increment = Math.ceil(target / speed);
+          count += increment;
+          if (count >= target) {
+            counter.textContent = isPercentage ? target + "%" : "+" + target;
+          } else {
+            counter.textContent = isPercentage ? count + "%" : "+" + count;
+            requestAnimationFrame(updateCount);
+          }
+        };
+
+        updateCount();
+        observer.unobserve(counter); // só anima uma vez
+      }
+    });
+  }, { threshold: 0.6 });
+
+  counters.forEach(counter => observer.observe(counter));
+});
+</script>
+
   
   </body>
 </html>
